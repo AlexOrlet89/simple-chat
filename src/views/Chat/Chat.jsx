@@ -25,6 +25,14 @@ export default function Chat() {
 
   useEffect(() => {
     getMessages().then(setMessages);
+    subscribe(handleMessageReceived);
+    return function cleanup() {
+      unsubscribe();
+    };
+    // unsubscribe();
+    // .finally(() => unsubscribe());
+    // .then(unsubscribe);
+    // unsubscribe();
     // TODO: Subscribe to message changes, using handleMessageReceived
     // as the callback function
     // Don't forget to return a cleanup method (`unsubscribe`)
